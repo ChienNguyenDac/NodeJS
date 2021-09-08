@@ -1,0 +1,21 @@
+extends ../layout/common
+
+block content
+    h1.ms-5 Create new user
+    if(errors)
+        each error in errors
+            .alert.alert-danger.ms-5
+                span=error
+    
+    form.mt-3.ms-5(action="/users/create", method="POST", enctype="multipart/form-data")
+        .mb-3
+            label(for="name", class="form-label")   Name 
+            input#name(type="text", name="name", class="form-control", value= value? value.name: "")
+        .mb-3
+            label(for="phone", class="form-label")  Phone 
+            input#phone(type="text", name="phone", class="form-control", value= value? value.phone: "")
+        .mb-3
+            label(for="avatar", class="form-label")  Avatar 
+            input#avatar.ms-5(type="file", name="avatar", class="form-control-file")
+        .mb-3
+            button.btn.btn-primary Create  

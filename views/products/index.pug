@@ -1,0 +1,32 @@
+extends ../layout/common
+
+block content 
+    h1 Products
+    .d-flex.align-items-center
+        form.ms-auto(action="/users/search" method="GET" class="d-flex")
+            input(type="text", name="key", class="form-control" )
+            button(class="btn btn-primary ms-2") search
+
+    .row.d-inline-flex
+        each product in products
+            .col-6.col-sm-4.col-md-3.p-2
+                .card.h-100
+                    img.card-img-top(src=product.image)
+                    .card-body
+                        h4.card-title.text-center=product.name
+                        p.card-text.text-center=product.description
+                        a.btn.btn-primary(href="/cart/"+product.id, style="position:absolute;bottom:0;right:0") Add to cart         
+
+    nav(aria-label='...')
+        ul.pagination
+            li(class="page-item"+(paginate.currentPage==1?" disabled":""))
+                a.page-link(href="/products?page="+(paginatecurrentPage-1)) Previous
+            - for (var i = paginate.startPage; i <= paginate.endPage; i++) {
+                li(class="page-item" +(i==paginate.currentPage?" active":""))
+                    a.page-link(href="/products?page="+i)=i 
+            - }
+            li(class="page-item"+(paginate.currentPage==paginate.pageNumber?" disabled":""))
+                a.page-link(href="/products?page="+(paginate.currentPage+1)) Next
+        
+                
+            

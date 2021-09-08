@@ -1,0 +1,18 @@
+extends ../layout/common
+
+block content
+    h1.ms-5  Login
+    if(errors)
+        each error in errors
+            .alert.alert-danger.ms-5
+                span=error
+    
+    form.mt-3.ms-5(action="/auth/login" method="POST")
+        .mb-3
+            label(for="email", class="form-label")   Email 
+            input#email(type="text", name="email", class="form-control")
+        .mb-3
+            label(for="password", class="form-label")  Password 
+            input#password(type="password", name="password", class="form-control")
+        .mb-3
+            button.btn.btn-primary Login  

@@ -1,0 +1,14 @@
+extends ../layout/common
+
+block content 
+    h1 Chuyển tiền
+    form.mt-3.ms-5(action="/transfer/create" method="POST")
+        input(type="hidden", name="_csrf", value=csrfToken)
+        .mb-3
+            label(for="accoutId", class="form-label")   AccountID 
+            input#accrountId(type="text", name="accountId", class="form-control")
+        .mb-3
+            label(for="amount", class="form-label")  Amount($) 
+            input#amount(type="text", name="amount", class="form-control")
+        .mb-3
+            button.btn.btn-primary Transfer 

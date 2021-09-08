@@ -1,0 +1,26 @@
+extends ../layout/common
+
+block content
+    h1  
+        span.me-4 USER LIST
+        a.btn.btn-primary.mr-5(href="/users/create") Create
+    .d-flex.align-items-center
+        form.ms-auto(action="/users/search" method="GET" class="d-flex")
+            input(type="text", name="key", class="form-control" )
+            button(class="btn btn-primary ms-2") search
+
+    table.table
+        tr
+            th Avatar
+            th  Name
+            th  Phone number
+            th  Action
+        each user in users 
+            tr
+                td 
+                    img(src=user.avatar||"images/default-avatar.png", width="50", style="border-radius:50%;")
+                td(style="padding-top:20px")=user.name
+                td(style="padding-top:20px")=user.phone 
+                td(style="padding-top:15px")
+                    a(class="btn btn-secondary",href="/users/"+user._id)   View
+    
